@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointments - Charming Smile Dental Clinic</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="adminStyles.css"> 
+    <script src="AdminScript.js" defer></script>
+    <style>
+        /* Your existing styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table thead {
+            background-color: #f8d7da;
+        }
+
+        table th, table td {
+            text-align: left;
+            padding: 12px;
+            font-size: 14px;
+            border: 1px solid #ddd;
+        }
+
+        table th {
+            color: #721c24;
+            font-weight: bold;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #fdf2f4;
+        }
+
+        table tr:nth-child(odd) {
+            background-color: #fff;
+        }
+
+        table tr:hover {
+            background-color: #fdecea;
+        }
+
+        /* New Appointment Styles */
+        .appointments-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .appointments-header h2 {
+            color: #8b4513;
+            margin: 0;
+        }
+
+        .appointments-tabs {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border: none;
+            background: none;
+            color: #666;
+            position: relative;
+        }
+
+        .tab.active {
+            color: #8b4513;
+            border-bottom: 2px solid #8b4513;
+            margin-bottom: -2px;
+        }
+
+        .search-bar {
+            padding: 8px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 250px;
+        }
+
+        .sort-dropdown {
+            padding: 8px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-left: 10px;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-reschedule {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .btn-cancel {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .status {
+            padding: 4px 8px;
+            border-radius: 4px;
+            background-color: #fdf2f4;
+            color: #721c24;
+        }
+
+        /* Sidebar dropdown styles */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Header -->
+    <div class="top-header">
+        <div class="logoDental">CHARMING SMILE<br>DENTAL CLINIC</div>
+        <div class="user-info">
+            <span class="date">September 20, 2024</span>
+            <div class="profile"><i class="fas fa-user-circle"></i></div>
+        </div>
+    </div>
+
+    <!-- Main Wrapper -->
+    <div class="main-wrapper">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <ul class="nav">
+                <li><span onclick="window.location.href='recepDash.html';"><i class="fas fa-tachometer-alt"></i> Dashboard</span></li>
+                <li><span onclick="window.location.href='recepManagement.html';"><i class="fas fa-users"></i> User Management</span></li>
+                <li><span onclick="window.location.href='calendar.html';"><i class="fas fa-calendar-alt"></i> Calendar</span></li>
+                <li><span onclick="window.location.href='recepPayments.html';"><i class="fas fa-credit-card"></i> Payments</span></li>
+                <li><span onclick="window.location.href='recepSMS.html';"><i class="fas fa-sms"></i> SMS</span></li>
+                <li><span onclick="window.location.href='policy.html';"><i class="fas fa-file-alt"></i> Policy</span></li>
+            </ul>
+        </div>    
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="user-management">
+                <div class="appointments-section">
+                    <div class="appointments-header">
+                        <h2>Today's Appointments</h2>
+                        <div class="header-controls">
+                            <select class="sort-dropdown">
+                                <option>Sort by:</option>
+                                <option>Date: Newest First</option>
+                                <option>Date: Oldest First</option>
+                                <option>Status</option>
+                            </select>
+                            <input type="text" class="search-bar" placeholder="Search by name">
+                        </div>
+                    </div>
+
+                    <div class="appointments-tabs">
+                        <button class="tab active">Upcoming</button>
+                        <button class="tab">Completed</button>
+                        <button class="tab">Re-scheduled</button>
+                        <button class="tab">Cancelled</button>
+                    </div>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date and Time</th>
+                                <th>Appointment ID</th>
+                                <th>Treatment</th>
+                                <th>Dentist</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>09/24/24<br>2:00 PM - 3:00 PM</td>
+                                <td>#A046</td>
+                                <td>Regular Checkup</td>
+                                <td>Dra. Zapata</td>
+                                <td><span class="status">Upcoming</span></td>
+                                <td class="action-buttons">
+                                    <button class="btn-reschedule">Re-schedule</button>
+                                    <button class="btn-cancel">Cancel</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>09/29/24<br>8:30 AM - 9:00 AM</td>
+                                <td>#A050</td>
+                                <td>Regular Checkup</td>
+                                <td>Dra. Zapata</td>
+                                <td><span class="status">Upcoming</span></td>
+                                <td class="action-buttons">
+                                    <button class="btn-reschedule">Re-schedule</button>
+                                    <button class="btn-cancel">Cancel</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
