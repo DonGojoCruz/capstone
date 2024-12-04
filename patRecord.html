@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charming Smile Dental Clinic</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="patRecord.css">
+    <script src="AdminScript.js" defer></script>
+</head>
+<body>
+    <div class="top-header">
+        <div class="logoDental">
+            CHARMING SMILE<br>DENTAL CLINIC
+        </div>
+        <div class="user-info">
+            <span class="date">September 20, 2024</span>
+            <i class="fas fa-user-circle fa-2x"></i>
+        </div>
+    </div>
+
+    <div class="main-wrapper">
+        <div class="sidebar">
+            <ul class="nav">
+                <li><span onclick="window.location.href='patDashboard.html';"><i class="fas fa-tachometer-alt"></i> Dashboard</li></span>
+                <button class="dropdown-btn">
+                    <span onclick="window.location.href='patCalendar.html';"><i class="fas fa-calendar-alt"></i> Calendar <i class="fas fa-chevron-down dropdown-icon"></i></span>
+                </button>
+                    <ul class="dropdown-container">
+                        <li><span onclick="window.location.href='patAppointments.html';"><i class="fas fa-notes-medical"></i> Appointments</span></li>
+                    </ul>
+                <li><span onclick="window.location.href='patRecord.html';"><i class="fas fa-user"></i> Patient Record</li></span>
+                <li><span onclick="window.location.href='patPayment.html';"><i class="fas fa-credit-card"></i> Payment</li></span>
+                <li><span onclick="window.location.href='patpolicy.html';"><i class="fas fa-file-alt"></i> Policy</span></li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <div class="patient-details">
+                <div class="patient-header">
+                    <div class="patient-avatar">
+                        <i class="fas fa-user-circle fa-3x"></i>
+                    </div>
+                    <div class="patient-info">
+                        <h3>Mia Tidoy</h3>
+                        <p>email123@gmail.com</p>
+                    </div>
+                </div>
+                <div class="patient-info-grid">
+                    <div><strong>Gender:</strong> Female</div>
+                    <div><strong>Birthdate:</strong> June 18, 2003</div>
+                    <div><strong>Phone no.:</strong> 091793280284</div>
+                    <div><strong>Registered Date:</strong> August 17, 2024</div>
+                    <div><strong>Address:</strong> House no. / Street / Brgy. / City/Province / Zip Code</div>
+                </div>
+                <div class="appointments-section">
+                    <button class="tab-button active">Upcoming Appointments</button>
+                    <button class="tab-button">Follow-Up Appointments</button>
+                    <div class="appointment-card">
+                        <p><strong>24 Sep 2024</strong></p>
+                        <p>2:00PM - 3:00PM</p>
+                        <p><strong>Treatment:</strong> Dental implant</p>
+                        <p><strong>Dentist:</strong> Dra. Zapata</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    var dropdownButtons = document.querySelectorAll('.dropdown-btn');
+
+    dropdownButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            // Toggle active class on the button
+            this.classList.toggle('active');
+
+            // Find the next sibling dropdown container
+            var dropdownContainer = this.nextElementSibling;
+            
+            // Toggle dropdown visibility
+            if (dropdownContainer.style.display === 'block') {
+                dropdownContainer.style.display = 'none';
+            } else {
+                dropdownContainer.style.display = 'block';
+            }
+        });
+    });
+});
+    </script>
+</body>
+</html>

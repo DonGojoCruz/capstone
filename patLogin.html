@@ -34,12 +34,21 @@
             <div class="extras">
                 <a href="#" class="forgot-password">Forgot password?</a>
             </div>
-            <button type="submit" class="btn login-btn">Login Now</button>
+            <button type="submit" class="btn login-btn" onclick="loginRedirect()">Login Now</button>
             <div class="divider">
                 <span>OR</span>
             </div>            
-            <button type="button" class="btn signup-btn">Signup Now</button>
+            <button type="button" class="btn signup-btn" onclick="signupRedirect()">Signup Now</button>
         </form>
     </div>
+    <script>
+        // JavaScript for Signup Button
+        function loginRedirect() {
+            window.location.href = "patDashboard.html"; // Replace with your signup page
+        }
+        function signupRedirect() {
+            window.location.href = "patSignup.html"; // Replace with your signup page
+        }
+    </script>
 </body>
 </html>

@@ -108,11 +108,16 @@
         <!-- Sidebar -->
         <div class="sidebar">
             <ul class="nav">
-                <li><span onclick="window.location.href='patDash.html';"><i class="fas fa-tachometer-alt"></i> Dashboard</span></li>
-                <li><span onclick="window.location.href='patCalendar.html';"><i class="fas fa-calendar-alt"></i> Calendar</span></li>
-                <li><span onclick="window.location.href='patRecord.html';"><i class="fas fa-sms"></i> Patient Record</span></li>
-                <li><span onclick="window.location.href='recepPayments.html';"><i class="fas fa-credit-card"></i> Payments</span></li>
-                <li><span onclick="window.location.href='policy.html';"><i class="fas fa-file-alt"></i> Policy</span></li>
+                <li><span onclick="window.location.href='patDashboard.html';"><i class="fas fa-tachometer-alt"></i> Dashboard</span></li>
+                <button class="dropdown-btn">
+                    <span onclick="window.location.href='patCalendar.html';"><i class="fas fa-calendar-alt"></i> Calendar <i class="fas fa-chevron-down dropdown-icon"></i></span>
+                </button>
+                    <ul class="dropdown-container">
+                        <li><span onclick="window.location.href='patAppointments.html';"><i class="fas fa-notes-medical"></i> Appointments</span></li>
+                    </ul>
+                <li><span onclick="window.location.href='patRecord.html';"><i class="fas fa-user"></i> Patient Record</span></li>
+                <li><span onclick="window.location.href='patPayment.html';"><i class="fas fa-credit-card"></i> Payment</span></li>
+                <li><span onclick="window.location.href='patPolicy.html';"><i class="fas fa-file-alt"></i> Policy</span></li>
             </ul>
         </div>    
 
@@ -123,16 +128,16 @@
                     <h1>Payment History</h1>
                 </div>
 
-                <div class="payment-controls">
-                    <select class="sort-dropdown">
-                        <option>Sort by : Newest</option>
-                        <option>Sort by : Oldest</option>
-                        <option>Sort by : Price</option>
-                        <option>Sort by : Name</option>
-                    </select>
-                </div>
 
                 <div class="payment-table">
+                    <div class="payment-controls">
+                        <select class="sort-dropdown">
+                            <option>Sort by : Newest</option>
+                            <option>Sort by : Oldest</option>
+                            <option>Sort by : Price</option>
+                            <option>Sort by : Name</option>
+                        </select>
+                    </div>
                     <table>
                         <thead>
                             <tr>
@@ -165,5 +170,27 @@
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    var dropdownButtons = document.querySelectorAll('.dropdown-btn');
+
+    dropdownButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            // Toggle active class on the button
+            this.classList.toggle('active');
+
+            // Find the next sibling dropdown container
+            var dropdownContainer = this.nextElementSibling;
+            
+            // Toggle dropdown visibility
+            if (dropdownContainer.style.display === 'block') {
+                dropdownContainer.style.display = 'none';
+            } else {
+                dropdownContainer.style.display = 'block';
+            }
+        });
+    });
+});
+    </script>
 </body>
 </html>
