@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <link rel="stylesheet" href="denPayment.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="recepScript.js" defer></script>
+</head>
+<body>
+    <!-- Top Header -->
+    <div class="top-header">
+        <div class="logoDental">CHARMING SMILE<br>DENTAL CLINIC</div>
+        <div class="user-info">
+            <span class="date">September 20, 2024</span>
+            <div class="profile"><i class="fas fa-user-circle"></i></div>
+        </div>
+    </div>
+    <div class="main-wrapper">
+        <!-- Sidebar Menu -->
+        <div class="sidebar">
+            <ul class="nav">
+                <li class="active"><span onclick="window.location.href='denDashboard.html';"><i class="fas fa-tachometer-alt"></i> Dashboard</span></li>
+                <button class="dropdown-btn">
+                    <span><i class="fas fa-calendar-alt"></i> Calendar <i class="fas fa-chevron-down dropdown-icon"></i></span>
+                </button>
+                    <ul class="dropdown-container">
+                        <li><span onclick="window.location.href='denAppointments.html';"><i class="fas fa-notes-medical"></i> Appointments</span></li>
+                        <li><span onclick="window.location.href='denRequest.html';"><i class="fas fa-notes-medical"></i> Request Approval</span></li>
+                        <li><span onclick="window.location.href='.html';"><i class="fas fa-notes-medical"></i> Calendar</span></li>
+                    </ul>
+                <li><span onclick="window.location.href='denPatientlist.html';"><i class="fas fa-users"></i> Patient List</span></li>
+                <li><span onclick="window.location.href='denPayments.html';"><i class="fas fa-credit-card"></i> Payments</span></li>
+            </ul>
+        </div>
+        <!-- User Table -->
+            <div class="user-table">
+                <div class="table-header">
+                    <h2>MANAGE PAYMENTS</h2>
+                </div>
+                <div class="payment-content">
+                    <div class="header-actions">
+                        <button class="add-payment-btn">+ Add Payment</button>
+                        <div class="sort-dropdown">
+                            <label for="sort">Sort by: </label>
+                            <select id="sort">
+                                <option value="newest">Newest</option>
+                                <option value="oldest">Oldest</option>
+                            </select>
+                        </div>
+                    </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Amount</th>
+                            <th>Date</th>
+                            <th>Treatment</th>
+                            <th>Price</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Yves Cruz</td>
+                            <td>P700</td>
+                            <td>2024-09-02</td>
+                            <td>Tooth Filling</td>
+                            <td>P700</td>
+                            <td>Paid</td>
+                            <td><button class="view-btn">View</button></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Janna Reyes</td>
+                            <td>P1000</td>
+                            <td>2024-09-02</td>
+                            <td>Oral Prophylaxis</td>
+                            <td>P1000</td>
+                            <td>Paid</td>
+                            <td><button class="view-btn">View</button></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Olivia Rodriguez</td>
+                            <td>P500</td>
+                            <td>2024-09-03</td>
+                            <td>Consultation</td>
+                            <td>P500</td>
+                            <td>Paid</td>
+                            <td><button class="view-btn">View</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+                </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    var dropdownButtons = document.querySelectorAll('.dropdown-btn');
+
+    dropdownButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            // Toggle active class on the button
+            this.classList.toggle('active');
+
+            // Find the next sibling dropdown container
+            var dropdownContainer = this.nextElementSibling;
+            
+            // Toggle dropdown visibility
+            if (dropdownContainer.style.display === 'block') {
+                dropdownContainer.style.display = 'none';
+            } else {
+                dropdownContainer.style.display = 'block';
+            }
+        });
+    });
+});
+    </script>
+</body>
+</html>

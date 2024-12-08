@@ -3,10 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Management</title>
+    <title>SMS</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="adminStyles.css"> 
     <script src="AdminScript.js" defer></script>
+    <style>
+        .user-management {
+            padding: 2rem;
+        }
+        
+        .user-management h2 {
+            color: #8B4513;
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+        }
+        
+        .form-container {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+        
+        .form-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+        
+        .form-box h3 {
+            color: #8B4513;
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            color: #8B4513;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-group select,
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .send-btn {
+            background: #007bff;
+            color: white;
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .send-btn:hover {
+            background: #0056b3;
+        }
+        </style>
 
 </head>
 <body>
@@ -26,83 +98,47 @@
             <ul class="nav">
                 <li><span onclick="window.location.href='recepDash.html';"><i class="fas fa-tachometer-alt"></i> Dashboard</span></li>
                 <li><span onclick="window.location.href='recepManagement.html';"><i class="fas fa-users"></i> User Management</span></li>
-                <li><span onclick="window.location.href='calendar.html';"><i class="fas fa-calendar-alt"></i> Calendar</span></li>
+                <li><span onclick="window.location.href='recepCalendar.html';"><i class="fas fa-calendar-alt"></i> Calendar</span></li>
                 <li><span onclick="window.location.href='recepPayment.html';"><i class="fas fa-credit-card"></i> Payments</span></li>
-                <li class="active"><span onclick="window.location.href='recepsms.html';"><i class="fas fa-sms"></i> SMS</span></li>
+                <li class="active"><span onclick="window.location.href='recepSMS.html';"><i class="fas fa-sms"></i> SMS</span></li>
                 <li><span onclick="window.location.href='policy.html';"><i class="fas fa-file-alt"></i> Policy</span></li>
             </ul>
         </div>    
 
         <!-- Main Content -->
         <div class="main-content">
-            <div class="user-management">
-                <h2>Manage SMS - SMS Settings</h2>
 
-                <!-- Main User Table -->
-                <div class="user-table">
-                    <div class="w-4/5 p-8">
-                        <div class="bg-white p-8 rounded shadow-md">
-                         <h3 class="text-xl font-bold text-[#8B5D5D] mb-4">
-                          Send Appointment Reminder
-                         </h3>
-                         <form>
-                          <div class="mb-4">
-                           <label class="block text-[#8B5D5D] font-bold mb-2">
-                            Select Accepted Appointment:
-                           </label>
-                           <select class="w-full p-2 border rounded">
-                            <option>
-                             Nicole Santos 09/25/24 at 1:00 PM
-                            </option>
-                           </select>
-                          </div>
-                          <div class="mb-4">
-                           <label class="block text-[#8B5D5D] font-bold mb-2">
-                            Patient's Phone No.:
-                           </label>
-                           <input class="w-full p-2 border rounded" type="text" value="09123456789"/>
-                          </div>
-                          <div class="mb-4">
-                           <label class="block text-[#8B5D5D] font-bold mb-2">
-                            Select Template:
-                           </label>
-                           <select class="w-full p-2 border rounded">
-                            <option>
-                             General Template
-                            </option>
-                           </select>
-                          </div>
-                          <div class="mb-4">
-                           <label class="block text-[#8B5D5D] font-bold mb-2">
-                            Message:
-                           </label>
-                           <textarea class="w-full p-2 border rounded" rows="4">Good Day Nicole, this is a reminder for your dental check-up appointment on 2024-09-24 at 1:00 PM.</textarea>
-                          </div>
-                          <button class="bg-blue-500 text-white px-4 py-2 rounded" type="submit">
-                           Send SMS
-                          </button>
-                         </form>
-                        </div>
-                       </div>
-                </div>
-
-                <!-- Edit User Modal -->
-                <div id="editModal" class="modal">
-                    <div class="modal-content">
-                        <span class="close" onclick="closeEditModal()">&times;</span>
-                        <h2>Edit User</h2>
-                        <label for="editUsername">Username:</label>
-                        <input type="text" id="editUsername">
-                        <label for="editPassword">Password:</label>
-                        <input type="password" id="editPassword">
-                        <label for="editUserType">User Type:</label>
-                        <select id="editUserType">
-                            <option value="Admin">Admin</option>
-                            <option value="Dentist">Dentist</option>
-                            <option value="Receptionist">Receptionist</option>
-                            <option value="Patient">Patient</option>
-                        </select>
-                        <button type="button" onclick="saveEdit()">Save</button>
+                <div class="form-container">
+                    <div class="form-box">
+                        <h3>Send Appointment Reminder</h3>
+                        
+                        <form>
+                            <div class="form-group">
+                                <label>Select Accepted Appointment:</label>
+                                <select>
+                                    <option>Nicole Santos 09/25/24 at 1:00 PM</option>
+                                </select>
+                            </div>
+            
+                            <div class="form-group">
+                                <label>Patient's Phone No.:</label>
+                                <input type="text" value="09123456789" readonly>
+                            </div>
+            
+                            <div class="form-group">
+                                <label>Select Template:</label>
+                                <select>
+                                    <option>General Template</option>
+                                </select>
+                            </div>
+            
+                            <div class="form-group">
+                                <label>Message:</label>
+                                <textarea rows="4">Good Day Nicole, this is a reminder for your dental check-up appointment on 2024-09-24 at 1:00 PM.</textarea>
+                            </div>
+            
+                            <button type="submit" class="send-btn">Send SMS</button>
+                        </form>
                     </div>
                 </div>
             </div>
