@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dentist Dashboard</title>
+    <link rel="stylesheet" href="denDashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="recepScript.js" defer></script>
+</head>
+<body>
+    <!-- Top Header -->
+    <div class="top-header">
+        <div class="logoDental">CHARMING SMILE<br>DENTAL CLINIC</div>
+        <div class="user-info">
+            <span class="date">September 20, 2024</span>
+            <div class="profile"><i class="fas fa-user-circle"></i></div>
+        </div>
+    </div>
+
+    <div class="main-wrapper">
+        <!-- Sidebar Menu -->
+        <div class="sidebar">
+            <ul class="nav">
+                <li class="active"><span onclick="window.location.href='denDashboard.html';"><i class="fas fa-tachometer-alt"></i> Dashboard</span></li>
+                <button class="dropdown-btn">
+                    <span><i class="fas fa-calendar-alt"></i> Calendar <i class="fas fa-chevron-down dropdown-icon"></i></span>
+                </button>
+                    <ul class="dropdown-container">
+                        <li><span onclick="window.location.href='denAppointments.html';"><i class="fas fa-notes-medical"></i> Appointments</span></li>
+                        <li><span onclick="window.location.href='denRequest.html';"><i class="fas fa-notes-medical"></i> Request Approval</span></li>
+                        <li><span onclick="window.location.href='denCalendar.html';"><i class="fas fa-notes-medical"></i> Calendar</span></li>
+                    </ul>
+                <li><span onclick="window.location.href='denPatientlist.html';"><i class="fas fa-users"></i> Patient List</span></li>
+                <li><span onclick="window.location.href='denPayment.html';"><i class="fas fa-credit-card"></i> Payments</span></li>
+            </ul>
+        </div>
+
+        <!-- Main Dashboard Content -->
+        <div class="main-content">
+            <!-- Main Dashboard Area -->
+            <div class="dashboard">
+                <div class="appointment-report">
+                    <div class="report-header">
+                        <div class="greeting">
+                            <h2>Good Day, <br>Dra. Zapata</h2>
+                            <div class="statistics-report">
+                                <h3>APPOINTMENT STATISTICS</h3>
+                            </div>
+                        </div>
+                        <div class="date-today">
+                            <p>September 14, <br>2024</p>
+                            <div class="view-buttons">
+                                <button class="active" data-period="monthly">Monthly</button>
+                                <button data-period="weekly">Weekly</button>
+                                <button data-period="daily">Daily</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bar-chart" id="bar-chart"></div> <!-- Empty container for bars -->
+                </div>
+                <div class="approval-request">
+                    <div><p>APPROVAL REQUEST</p></div>
+                    <div><p1>20</p1></div>
+                    <div class="description">
+                        <p3>Pending Appointments to Approved
+                            <button class="more-buttons">More</button>
+                        </p3>
+                    </div>
+                    <div><p>UPCOMING APPOINTMENTS</p></div>
+                    <div><p1>7</p1></div>
+                    <div class="description">
+                        <button class="more-buttons">More</button>
+                    </div>
+                    <div><p>COMPLETED APPOINTMENTS</p></div>
+                    <div><p1>3</p1></div>
+                    <div class="description">
+                        <button class="more-buttons">More</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Statistics Summary -->
+            <div class="statistics">
+                <div class="stat-box">
+                    <h4>TODAY'S APPOINTMENTS</h4>
+                    <div class="number">
+                      <p class="date-now">7</p>
+                      <div class="treatment-container">
+                        <table id="treatement-box">
+                            <thead>
+                                <tr>
+                                    <th>Treatment</th>
+                                    <th>Time</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Root Canal</td>
+                                    <td>10:00 - 11:00</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table id="treatement-box">
+                            <thead>
+                                <tr>
+                                    <th>Treatment</th>
+                                    <th>Time</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Oral Prophylaxis</td>
+                                    <td>13:00 - 14:00</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                      </div>
+                    </div>
+                </div>
+                <div class="stat-box">
+                    <h4>TOTAL PATIENTS THIS MONTH</h4>
+                    <div class="number"><p>50</p>
+                    </div>
+                    <h4>TOTAL PATIENTS THIS MONTH</h4>
+                    <div class="number"><p>50</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    var dropdownButtons = document.querySelectorAll('.dropdown-btn');
+
+    dropdownButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            // Toggle active class on the button
+            this.classList.toggle('active');
+
+            // Find the next sibling dropdown container
+            var dropdownContainer = this.nextElementSibling;
+            
+            // Toggle dropdown visibility
+            if (dropdownContainer.style.display === 'block') {
+                dropdownContainer.style.display = 'none';
+            } else {
+                dropdownContainer.style.display = 'block';
+            }
+        });
+    });
+});
+    </script>
+</body>
+</html>

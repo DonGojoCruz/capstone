@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dentist Dashboard</title>
+    <link rel="stylesheet" href="denCalendar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="recepScript.js" defer></script>
+</head>
+<body>
+    <!-- Top Header -->
+    <div class="top-header">
+        <div class="logoDental">CHARMING SMILE<br>DENTAL CLINIC</div>
+        <div class="user-info">
+            <span class="date">September 20, 2024</span>
+            <div class="profile"><i class="fas fa-user-circle"></i></div>
+        </div>
+    </div>
+
+    <div class="main-wrapper">
+        <!-- Sidebar Menu -->
+        <div class="sidebar">
+            <ul class="nav">
+                <li><span onclick="window.location.href='denDashboard.html';"><i class="fas fa-tachometer-alt"></i> Dashboard</span></li>
+                <button class="dropdown-btn">
+                    <span><i class="fas fa-calendar-alt"></i> Calendar <i class="fas fa-chevron-down dropdown-icon"></i></span>
+                </button>
+                    <ul class="dropdown-container">
+                        <li><span onclick="window.location.href='denAppointments.html';"><i class="fas fa-notes-medical"></i> Appointments</span></li>
+                        <li><span onclick="window.location.href='denRequest.html';"><i class="fas fa-notes-medical"></i> Request Approval</span></li>
+                        <li class="active"><span onclick="window.location.href='denCalendar.html';"><i class="fas fa-notes-medical"></i> Calendar</span></li>
+                    </ul>
+                <li><span onclick="window.location.href='denPatientlist.html';"><i class="fas fa-users"></i> Patient List</span></li>
+                <li><span onclick="window.location.href='denPayment.html';"><i class="fas fa-credit-card"></i> Payments</span></li>
+            </ul>
+        </div>
+        
+    </div>
+    <script>
+        
+        document.addEventListener('DOMContentLoaded', function() {
+    var dropdownButtons = document.querySelectorAll('.dropdown-btn');
+
+    dropdownButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            // Toggle active class on the button
+            this.classList.toggle('active');
+
+            // Find the next sibling dropdown container
+            var dropdownContainer = this.nextElementSibling;
+            
+            // Toggle dropdown visibility
+            if (dropdownContainer.style.display === 'block') {
+                dropdownContainer.style.display = 'none';
+            } else {
+                dropdownContainer.style.display = 'block';
+            }
+        });
+    });
+});
+    </script>
+</body>
+</html>
