@@ -6,6 +6,7 @@
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="adminStyles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Include Chart.js -->
     <script src="recepScript.js" defer></script>
 </head>
 <body>
@@ -43,12 +44,15 @@
                     <div class="report-header">
                         <h3>Appointment Statistical Report</h3>
                         <div class="view-buttons">
-                            <button class="active" data-period="monthly">Monthly</button>
-                            <button data-period="weekly">Weekly</button>
-                            <button data-period="daily">Daily</button>
+                            <button class="chart-button" data-period="monthly">Monthly</button>
+                            <button class="chart-button" data-period="weekly">Weekly</button>
+                            <button class="chart-button" data-period="daily">Daily</button>
                         </div>
                     </div>
-                    <div class="bar-chart" id="bar-chart"></div> <!-- Empty container for bars -->
+                     <!-- Bar Chart -->
+                     <div class="bar-chart">
+                        <canvas id="bar-chart" width="1400" height="300"></canvas>
+                    </div>
                 </div>
             </div>
                 <!-- Statistics Summary -->
@@ -68,5 +72,76 @@
                 </div>
         </div>
     </div>
+        <!-- JavaScript for Dropdown and Chart -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                // Dropdown functionality
+                const dropdownButtons = document.querySelectorAll('.dropdown-btn');
+                dropdownButtons.forEach(function (button) {
+                    button.addEventListener('click', function () {
+                        this.classList.toggle('active');
+                        const dropdownContainer = this.nextElementSibling;
+                        dropdownContainer.style.display = dropdownContainer.style.display === 'block' ? 'none' : 'block';
+                    });
+                });
+    
+                // Bar Chart with Chart.js
+                const ctx = document.getElementById('bar-chart').getContext('2d');
+    
+                // Data for different time periods
+                const chartData = {
+                    monthly: {
+                        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                        data: [10, 5, 8, 7, 12, 20, 18, 15, 10, 8, 6, 4]
+                    },
+                    weekly: {
+                        labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                        data: [25, 18, 15, 20]
+                    },
+                    daily: {
+                        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                        data: [3, 5, 2, 8, 6, 4, 7]
+                    }
+                };
+    
+                // Chart configuration
+                let barChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: chartData.monthly.labels,
+                        datasets: [{
+                            label: 'Appointments',
+                            data: chartData.monthly.data,
+                            backgroundColor: 'rgba(234, 84, 85, 0.7)',
+                            borderColor: 'rgba(234, 84, 85, 1)',
+                            borderWidth: 1,
+                            borderRadius: 5, // Rounded bar corners
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+    
+                // Event listener for switching datasets
+                const chartButtons = document.querySelectorAll('.chart-button');
+                chartButtons.forEach(button => {
+                    button.addEventListener('click', function () {
+                        const period = this.dataset.period;
+                        barChart.data.labels = chartData[period].labels;
+                        barChart.data.datasets[0].data = chartData[period].data;
+                        barChart.update();
+    
+                        // Highlight active button
+                        chartButtons.forEach(btn => btn.classList.remove('active'));
+                        this.classList.add('active');
+                    });
+                });
+            });
+        </script>
 </body>
 </html>
